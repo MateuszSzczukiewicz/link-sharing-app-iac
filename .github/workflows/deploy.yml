@@ -33,8 +33,9 @@ jobs:
             else
               git pull origin main
             fi
-            docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_TOKEN
+
             cd docker-compose
+            echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             docker-compose pull
             docker-compose up -d
 
