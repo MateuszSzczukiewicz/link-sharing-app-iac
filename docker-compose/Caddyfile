@@ -1,0 +1,7 @@
+link-sharing-app.cmbe.pl {
+    reverse_proxy frontend:80
+
+    handle /api/* {
+        reverse_proxy backend:8000
+    }
+}
