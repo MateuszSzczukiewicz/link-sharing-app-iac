@@ -1,9 +1,7 @@
-version: "3.9"
-
 services:
   frontend:
-    image: alto64/svelte-linksharingapp:latest
-    container_name: svelte-linksharingapp_frontend
+    image: alto64/link-sharing-app-fe:latest
+    container_name: link-sharing-app-fe
     expose:
       - "80"
     restart: unless-stopped
@@ -11,8 +9,8 @@ services:
       - app_network
 
   backend:
-    image: alto64/flask-linksharingapp:latest
-    container_name: flask-linksharingapp
+    image: alto64/link-sharing-app-be:latest
+    container_name: link-sharing-app-be
     ports:
       - "8000:8000"
     restart: unless-stopped
