@@ -37,6 +37,8 @@ jobs:
             if [ ! -d .git ]; then
               git clone https://github.com/MateuszSzczukiewicz/link-sharing-app-iac.git .
             else
+              git config pull.rebase false
+              git pull origin main
               git pull origin main
             fi
 
