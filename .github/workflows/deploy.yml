@@ -41,7 +41,6 @@ jobs:
             fi
 
             cd docker-compose
-            echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             docker-compose pull
             docker-compose up -d
 
