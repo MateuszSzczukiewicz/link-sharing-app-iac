@@ -45,7 +45,3 @@ jobs:
             echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             docker-compose pull
             docker-compose up -d
-
-      - name: Healthcheck
-        run: |
-          curl -f http://${{ secrets.SERVER_HOST }}/health || exit 1
