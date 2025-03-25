@@ -1,3 +1,7 @@
+networks:
+  link_sharing_app_network:
+    name: link_sharing_app_network
+
 services:
   frontend:
     image: alto64/link-sharing-app-fe:latest
@@ -6,16 +10,16 @@ services:
       - "80"
     restart: unless-stopped
     networks:
-      - app_network
+      - link_sharing_app_network
 
   backend:
     image: alto64/link-sharing-app-be:latest
     container_name: link-sharing-app-be
-    ports:
-      - "8000:8000"
+    expose:
+      - "8000"
     restart: unless-stopped
     networks:
-      - app_network
+      - link_sharing_app_network
 
   caddy:
     image: caddy:alpine
@@ -27,7 +31,4 @@ services:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
     restart: unless-stopped
     networks:
-      - app_network
-
-networks:
-  app_network: {}
+      - link_sharing_app_network
