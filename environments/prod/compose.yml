@@ -1,0 +1,34 @@
+networks:
+  link_sharing_app_network:
+    name: link_sharing_app_network
+
+services:
+  frontend:
+    image: alto64/link-sharing-app-fe:latest
+    container_name: link-sharing-app-fe
+    expose:
+      - "80"
+    restart: unless-stopped
+    networks:
+      - link_sharing_app_network
+
+  backend:
+    image: alto64/link-sharing-app-be:latest
+    container_name: link-sharing-app-be
+    expose:
+      - "8000"
+    restart: unless-stopped
+    networks:
+      - link_sharing_app_network
+
+  caddy:
+    image: caddy:alpine
+    container_name: caddy-reverse-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+    restart: unless-stopped
+    networks:
+      - link_sharing_app_network
